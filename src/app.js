@@ -63,7 +63,8 @@ const options = {
         username: process.env.BOTNAME,
         password: process.env.OAUTHTOKEN,
     },
-    channels: process.env.TWICTH_CHANNEL.split(','),
+//    channels: process.env.TWICTH_CHANNELS.split(','),
+    channels: [process.env.TWICTH_CHANNEL],
 };
 console.log(options)
 const client = new tmi.Client(options);
