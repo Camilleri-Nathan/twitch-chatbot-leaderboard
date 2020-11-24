@@ -80,6 +80,10 @@ client.on('message', async (channel, tags, message, self) => {
         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/oot/category/any");
         displayTwitch(channel, 'ANY%', 'OOT');
     }
+    if (message.toLowerCase() === '!enclave') {
+        await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdrqe10k");
+        displayTwitch(channel, 'Light_Side', 'Enclave');
+    }
 });
 
 function displayTwitch(channel, category, game) {
