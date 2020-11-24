@@ -4,7 +4,7 @@
   "description": "A simple  twitch Speedrun LeaderBoard",
   "main": "src",
   "scripts": {
-    "start": "node -r dotenv/config .",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Oshino_Thanatos",
@@ -13,6 +13,7 @@
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
+    "express": "^4.17.1",
     "tmi.js": "^1.5.0"
   }
 }

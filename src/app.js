@@ -4,6 +4,9 @@ import {convertHMS} from './tools';
 const dotenv = require('dotenv');
 dotenv.config();
 const axios = require('axios');
+const express = require('express');
+const app = express();
+
 
 let timeTopPlayer = [];
 let idTopPlayer = [];
@@ -67,6 +70,7 @@ const options = {
     channels: [process.env.TWICTH_CHANNEL],
 };
 console.log(options)
+
 const client = new tmi.Client(options);
 client.connect().catch(console.error);
 
@@ -90,3 +94,9 @@ client.on('message', async (channel, tags, message, self) => {
 function displayTwitch(channel, category, game) {
     client.say(channel, `LeaderBoard ${category} ${game}: 1st -> ${nameTopPlayer[0]}: ${timeTopPlayer[0]}, 2nd -> ${nameTopPlayer[1]}: ${timeTopPlayer[1]}, 3rd -> ${nameTopPlayer[2]}: ${timeTopPlayer[2]}`);
 }
+
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
