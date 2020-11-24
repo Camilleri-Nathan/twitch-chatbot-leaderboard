@@ -90,3 +90,8 @@ client.on('message', async (channel, tags, message, self) => {
 function displayTwitch(channel, category, game) {
     client.say(channel, `LeaderBoard ${category} ${game}: 1st -> ${nameTopPlayer[0]}: ${timeTopPlayer[0]}, 2nd -> ${nameTopPlayer[1]}: ${timeTopPlayer[1]}, 3rd -> ${nameTopPlayer[2]}: ${timeTopPlayer[2]}`);
 }
+
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+    console.log(`Listening on ${port}`);
+});
