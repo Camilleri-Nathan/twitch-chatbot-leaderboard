@@ -86,14 +86,14 @@ client.on('message', async (channel, tags, message, self) => {
         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/oot/category/any");
         displayTwitch(channel, 'ANY%', 'OOT');
     }
-    if (message.toLowerCase() === '!enclaveLight') {
+    if (message.toLowerCase() === '!enclavelight') {
         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdrqe10k");
         displayTwitch(channel, 'Light_Side', 'Enclave');
     }
-    if (message.toLowerCase() === '!enclaveDark') {
+   /* if (message.toLowerCase() === '!enclavedark') {
         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdz37px2");
-        displayTwitch(channel, 'Light_Side', 'Enclave');
-    }
+        displayTwitch(channel, 'Dark_Side', 'Enclave');
+    }*/
 });
 
 function displayTwitch(channel, category, game) {
