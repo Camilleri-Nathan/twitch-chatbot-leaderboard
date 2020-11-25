@@ -8,7 +8,6 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-
 let timeTopPlayer = [];
 let idTopPlayer = [];
 let nameTopPlayer = [];
@@ -31,7 +30,7 @@ function parseThreeTopPlayer(json) {
 
     let indexArray = 0;
 
-    while (indexArray <= 2) {
+    while (json[indexArray] != null && indexArray <= 2) {
         timeTopPlayer.push(convertHMS(json[indexArray].run.times.primary_t));
         idTopPlayer.push(json[indexArray].run.players[0].id);
         indexArray++;
@@ -43,7 +42,7 @@ async function searchNamePlayerById() {
 
     let indexArray = 0;
 
-    while (indexArray <= 2) {
+    while (idTopPlayer[indexArray] != null) {
         try {
             const response = await axios.get(
                 'https://www.speedrun.com/api/v1/users/' +
@@ -70,7 +69,7 @@ const options = {
     channels: process.env.TWICTH_CHANNELS.split(','),
     //channels: [process.env.TWICTH_CHANNEL],
 };
-console.log(options)
+console.log(options);
 
 const client = new tmi.Client(options);
 client.connect().catch(console.error);
@@ -79,26 +78,48 @@ client.on('message', async (channel, tags, message, self) => {
 
     if (self) return;
     if (message.toLowerCase() === '!blast') {
-        await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/4d70mn17/category/100");
+        await gameLeaderboard(
+            'https://www.speedrun.com/api/v1/leaderboards/4d70mn17/category/100');
         displayTwitch(channel, '100%', 'Blast Corps');
     }
     if (message.toLowerCase() === '!oot') {
-        await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/oot/category/any");
+        await gameLeaderboard(
+            'https://www.speedrun.com/api/v1/leaderboards/oot/category/any');
         displayTwitch(channel, 'ANY%', 'OOT');
     }
-    if (message.toLowerCase() === '!enclavelight') {
-        await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdrqe10k");
-        displayTwitch(channel, 'Light_Side', 'Enclave');
+    if (message.toLowerCase() === '!enclave.light') {
+        await gameLeaderboard('https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdrqe10k');
+        displayTwitch(channel, 'Light_Side ANY%', 'Enclave');
     }
-   /* if (message.toLowerCase() === '!enclavedark') {
-        await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdz37px2");
-        displayTwitch(channel, 'Dark_Side', 'Enclave');
-    }*/
+    if (message.toLowerCase() === '!enclave.dark') {
+         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdz37px2");
+         displayTwitch(channel, 'Dark_Side ANY%', 'Enclave');
+     }
+    if (message.toLowerCase() === '!enclave.dark.100%') {
+         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/rklrpq8k");
+         displayTwitch(channel, 'Dark_Side 100%', 'Enclave');
+     }
+    if (message.toLowerCase() === '!enclave.light.100%') {
+         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/9kv90m32");
+         displayTwitch(channel, 'Light_Side 100%', 'Enclave');
+     }
+    if (message.toLowerCase() === '!enclave.ld.100%') {
+         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/vdo1jo92");
+         displayTwitch(channel, 'Light & Dark 100%', 'Enclave');
+     }
+    if (message.toLowerCase() === '!enclave.ld%') {
+         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/ndx4gmv2");
+         displayTwitch(channel, 'Light & Dark ANY%', 'Enclave');
+     }
 });
 
 function displayTwitch(channel, category, game) {
-    client.say(channel, `LeaderBoard ${category} ${game}: 1st -> ${nameTopPlayer[0]}: ${timeTopPlayer[0]}, 2nd -> ${nameTopPlayer[1]}: ${timeTopPlayer[1]}, 3rd -> ${nameTopPlayer[2]}: ${timeTopPlayer[2]}`);
+    if (nameTopPlayer.length === 1)
+        client.say(channel, `LeaderBoard ${category} ${game}: 1st -> ${nameTopPlayer[0]}: ${timeTopPlayer[0]}`);
+    else if (nameTopPlayer.length === 2)
+        client.say(channel, `LeaderBoard ${category} ${game}: 1st -> ${nameTopPlayer[0]}: ${timeTopPlayer[0]}, 2nd -> ${nameTopPlayer[1]}: ${timeTopPlayer[1]}`);
+    else
+        client.say(channel, `LeaderBoard ${category} ${game}: 1st -> ${nameTopPlayer[0]}: ${timeTopPlayer[0]}, 2nd -> ${nameTopPlayer[1]}: ${timeTopPlayer[1]}, 3rd -> ${nameTopPlayer[2]}: ${timeTopPlayer[2]}`);
 }
 
-
-app.listen(PORT, () => { console.log(`Our app is running on port ${ PORT }`); });
+app.listen(PORT, () => { console.log(`Our app is running on port ${PORT}`); });
