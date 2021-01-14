@@ -95,22 +95,10 @@ client.on('message', async (channel, tags, message, self) => {
          await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdz37px2");
          displayTwitch(channel, 'Dark_Side ANY%', 'Enclave');
      }
-    if (message.toLowerCase() === '!enclave.dark.100%') {
-         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/rklrpq8k");
-         displayTwitch(channel, 'Dark_Side 100%', 'Enclave');
-     }
-    if (message.toLowerCase() === '!enclave.light.100%') {
-         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/9kv90m32");
-         displayTwitch(channel, 'Light_Side 100%', 'Enclave');
-     }
-    if (message.toLowerCase() === '!enclave.ld.100%') {
-         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/vdo1jo92");
-         displayTwitch(channel, 'Light & Dark 100%', 'Enclave');
-     }
-    if (message.toLowerCase() === '!enclave.ld%') {
-         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/ndx4gmv2");
-         displayTwitch(channel, 'Light & Dark ANY%', 'Enclave');
-     }
+    if (message.toLowerCase() === '!toejam.fixed') {
+        await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/76rx72e6/category/7kj8rg3d");
+        displayTwitch(channel, 'Fixed Any%', 'ToeJam');
+    }
 });
 
 function displayTwitch(channel, category, game) {
