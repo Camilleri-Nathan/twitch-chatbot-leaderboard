@@ -69,7 +69,7 @@ const options = {
     channels: process.env.TWICTH_CHANNELS.split(','),
     //channels: [process.env.TWICTH_CHANNEL],
 };
-console.log(options);
+//console.log(options);
 
 const client = new tmi.Client(options);
 client.connect().catch(console.error);
