@@ -77,7 +77,7 @@ client.connect().catch(console.error);
 client.on('message', async (channel, tags, message, self) => {
 
     if (self) return;
-    if (message.toLowerCase() === '!blast') {
+  /*  if (message.toLowerCase() === '!blast') {
         await gameLeaderboard(
             'https://www.speedrun.com/api/v1/leaderboards/4d70mn17/category/100');
         displayTwitch(channel, '100%', 'Blast Corps');
@@ -86,7 +86,7 @@ client.on('message', async (channel, tags, message, self) => {
         await gameLeaderboard(
             'https://www.speedrun.com/api/v1/leaderboards/oot/category/any');
         displayTwitch(channel, 'ANY%', 'OOT');
-    }
+    }*/
     if (message.toLowerCase() === '!enclave.light') {
         await gameLeaderboard('https://www.speedrun.com/api/v1/leaderboards/46wle91r/category/jdrqe10k');
         displayTwitch(channel, 'Light_Side ANY%', 'Enclave');
@@ -98,6 +98,9 @@ client.on('message', async (channel, tags, message, self) => {
     if (message.toLowerCase() === '!toejam.fixed') {
         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/76rx72e6/category/7kj8rg3d");
         displayTwitch(channel, 'Fixed Any%', 'ToeJam');
+    }
+    if (message.toLowerCase() === '!lazyy') {
+        print(channel, "Mon Profil speedrun.com https://www.speedrun.com/user/Lazyybird")
     }
 });
 
