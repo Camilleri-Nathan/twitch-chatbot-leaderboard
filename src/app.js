@@ -99,7 +99,7 @@ client.on('message', async (channel, tags, message, self) => {
         await gameLeaderboard("https://www.speedrun.com/api/v1/leaderboards/76rx72e6/category/7kj8rg3d");
         displayTwitch(channel, 'Fixed Any%', 'ToeJam');
     }
-    if (message.toLowerCase() === '!lazyy') {
+    if (message.toLowerCase() === '!speedrun') {
         client.say(channel, `Mon Profil speedrun.com https://www.speedrun.com/user/Lazyybird`);
     }
 });
