@@ -100,7 +100,7 @@ client.on('message', async (channel, tags, message, self) => {
         displayTwitch(channel, 'Fixed Any%', 'ToeJam');
     }
     if (message.toLowerCase() === '!lazyy') {
-        print(channel, "Mon Profil speedrun.com https://www.speedrun.com/user/Lazyybird")
+        client.say(channel, `Mon Profil speedrun.com https://www.speedrun.com/user/Lazyybird`);
     }
 });
 
